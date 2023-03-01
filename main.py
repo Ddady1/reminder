@@ -1,5 +1,7 @@
 from getpass import getpass
 from mysql.connector import connect, Error
+import json
+
 
 
 class Mysql:
@@ -7,7 +9,8 @@ class Mysql:
 
         try:
             with connect(
-                host="localhost",
+                #host="localhost",
+                host=secret.get('aws_sql_address'),
                 user=input("Enter username: "),
                 #password=getpass("Enter password: "),
                 password='Aa1234',
