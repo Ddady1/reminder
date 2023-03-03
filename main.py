@@ -1,6 +1,7 @@
 from getpass import getpass
 from mysql.connector import connect, Error
 import json
+import time
 #import pymysql
 
 
@@ -17,35 +18,43 @@ def connect_sql():
             #database=config.get('db_name')
             ) as connection:
                 print('Connection with MySQL server was established')
+                time.sleep(3)
                 check_db_exists(config.get('db_name'), connection)
 
 
     except Error as e:
             print(e)
 
+
 def create_db(dbname, connection):
     create_db_query = f'CREATE DATABASE {dbname}'
-    with connection.cursor() as cursor:
-        cursor.execute(create_db_query)
-        print('Database was created')
+
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(create_db_query)
+            print('Database was created successfully!')
+    except Error as e:
+        print(e)
 
 def check_db_exists(dbname, connection):
 
+    print("Checking Databases...")
+    time.sleep(3)
     db = connection.cursor()
     db.execute('show databases')
     lst = db.fetchall()
-    print(lst)
-    if dbname in lst:
-        print('Database is already exists')
-        print(lst)
-    else:
-        print('Database doesn\'t exists. Creating DB...')
-        try:
-            create_db(config.get('db_name'), connection)
-            print('Database was created successfully')
+    i = 0
+    while i < len(lst):
+        if dbname in lst[i]:
+            print('Database is already exists')
+            return
+        else:
+            i += 1
 
-        except Error as e:
-            print(e)
+    print('Database doesn\'t exists. Creating DB...')
+    create_db(config.get('db_name'), connection)
+
+
     '''def menu(self, key):
 
         if key == 'sd':
