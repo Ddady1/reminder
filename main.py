@@ -55,15 +55,15 @@ def check_db_exists(dbname, connection):
     create_db(config.get('db_name'), connection)
 
 
-    '''def menu(self, key):
 
-        if key == 'sd':
-            show_db(self)
-        elif key == 'st':
-            show_table(self)
+def manual():
+    print('Manual')
 
 
-    def show_db(self):
+
+
+
+    '''def show_db(self):
         # Show DB
         show_db_query = "SHOW DATABASES"
         with connection.cursor() as cursor:
@@ -94,7 +94,25 @@ if __name__ == '__main__':
     with open('secret.json') as f:
         config = json.load(f)
 
+    x = input('Please choose 1 for Auto setup or 2 for Manual setup:')
 
-    connect_sql()
+    while True:
+        if x != 1 or x != 2:
+            print(type(x))
+            x = input('Please choose 1 or 2:')
+
+        elif x == '1':
+            print(type(x))
+            connect_sql()
+            break
+
+        elif x == '2':
+            print(type(x))
+            manual()
+            break
+
+
+
+    #connect_sql()
 
 
