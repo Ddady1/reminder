@@ -2,6 +2,7 @@ from getpass import getpass
 from mysql.connector import connect, Error
 import json
 import time
+import tkinter as tk
 #import pymysql
 
 
@@ -61,6 +62,22 @@ def manual():
 
 
 
+def menu():
+
+    x = input('Please choose 1 for Auto setup or 2 for Manual setup or 0 for Exit:')
+
+    while x != '1' or x != '2':
+        #if x != '1' or x != '2':
+        x = input('Please choose 1 for Auto setup or 2 for Manual setup or 0 for Exit:')
+
+        if x == '1':
+            connect_sql()
+
+        elif x == '2':
+            manual()
+
+        elif x == '0':
+            exit()
 
 
     '''def show_db(self):
@@ -94,22 +111,33 @@ if __name__ == '__main__':
     with open('secret.json') as f:
         config = json.load(f)
 
-    x = input('Please choose 1 for Auto setup or 2 for Manual setup:')
+    window = tk.Tk()
+    frame = tk.Frame(master=window, width=200, height=100)
+    frame.pack()
+    button = tk.Button(master=window, text='Menu', width=25, height=5, command=menu)
+    button.pack()
+    #button.pack()
 
-    while True:
-        if x != 1 or x != 2:
-            print(type(x))
-            x = input('Please choose 1 or 2:')
+    #menu()
+    window.mainloop()
 
-        elif x == '1':
-            print(type(x))
+
+
+
+    '''x = input('Please choose 1 for Auto setup or 2 for Manual setup or 0 for Exit:')
+
+    while x != '1' or x != '2':
+        #if x != '1' or x != '2':
+        x = input('Please choose 1 for Auto setup or 2 for Manual setup or 0 for Exit:')
+
+        if x == '1':
             connect_sql()
-            break
 
         elif x == '2':
-            print(type(x))
             manual()
-            break
+
+        elif x == '0':
+            exit()'''
 
 
 
