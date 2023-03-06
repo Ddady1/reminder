@@ -26,3 +26,8 @@ st.markdown(
     - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
 """
 )
+
+if st.button('Click Me!'):
+    st.write('Good Fala...')
+else:
+    st.write('Damn...')
