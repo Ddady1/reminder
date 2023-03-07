@@ -2,10 +2,7 @@ from getpass import getpass
 from mysql.connector import connect, Error
 import json
 import time
-import tkinter as tk
 #import pymysql
-
-
 
 
 
@@ -111,15 +108,7 @@ if __name__ == '__main__':
     with open('secret.json') as f:
         config = json.load(f)
 
-    window = tk.Tk()
-    frame = tk.Frame(master=window, width=200, height=100)
-    frame.pack()
-    button = tk.Button(master=window, text='Menu', width=25, height=5, command=menu)
-    button.pack()
-    #button.pack()
-
-    #menu()
-    window.mainloop()
+    menu()
 
 
 
