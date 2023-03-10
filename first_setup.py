@@ -1,18 +1,32 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter.messagebox import showinfo
+from tkinter.messagebox import showinfo, askyesno
 from ctypes import windll
+import os
+import json
 
 
 windll.shcore.SetProcessDpiAwareness(1)
 
 def check_json():
-    #code...
-    return
+    path = 'assets/secret.json'
+    if os.path.isfile(path):
+        confirm()
+    write_json(var_list, var_list_string)
 
-def write_json(var_list):
-    #writecode
-    return
+
+def write_json(var_list, string_list):
+    dict = {}
+    i = 0
+    for var in var_list:
+        con = var.get()
+        dict[string_list[i]] = con
+        i += 1
+
+    js_object = json.dumps(dict, indent=4)
+    with open('assets/secret.json', 'w') as f:
+        f.write(js_object)
+    root.quit()
 
 def cancel_bt():
     root.quit()
@@ -20,6 +34,14 @@ def cancel_bt():
 def clear_bt(entries):
     for en in entries:
         en.delete(0, 'end')
+
+def confirm():
+
+    answer = askyesno(title='confirmation', message='The file already exists. Would like to overwrite it?')
+    if answer:
+        write_json(var_list, var_list_string)
+
+
 
 # Create root window
 
@@ -38,6 +60,7 @@ db_port = tk.StringVar()
 db_dbName = tk.StringVar()
 
 var_list = [sql_address, db_username, db_pass, db_port, db_dbName]
+var_list_string = ['sql_address', 'db_username', 'db_pass', 'db_port', 'db_dbName']
 
 # Setup grid
 
@@ -47,7 +70,6 @@ setup.pack(padx=10, pady=10, fill='x', expand=True)'''
 # Label frame
 
 lf = ttk.Labelframe(root, text='SQL Connection details:')
-#lf.grid(column=0, row=0, padx=20, pady=20, sticky=tk.N)
 lf.pack(fill='both', ipadx=10, ipady=50, padx=50, pady=20, anchor=tk.NW)
 
 
@@ -94,9 +116,9 @@ db_dbName_entry = ttk.Entry(lf, textvariable=db_dbName)
 db_dbName_entry.insert(0, 'licenses')
 db_dbName_entry.pack(fill='x', expand=True)
 
-# Save button
+# Save button (need to be correct)
 
-save_button = ttk.Button(lf, text='Save')
+save_button = ttk.Button(lf, text='Save', command=check_json)
 save_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 
 # Clear button
@@ -104,6 +126,7 @@ save_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 entries_list = [sql_address_entry, db_username_entry, db_pass_entry, db_port_entry, db_dbName_entry]
 clear_button = ttk.Button(lf, text='Clear all', command=lambda: clear_bt(entries_list))
 clear_button.pack(side='left', ipadx=5, ipady=5, expand=True)
+
 
 # Cancel button
 
