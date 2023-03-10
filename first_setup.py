@@ -14,6 +14,13 @@ def write_json(var_list):
     #writecode
     return
 
+def cancel_bt():
+    root.quit()
+
+def clear_bt(entries):
+    for en in entries:
+        en.delete(0, 'end')
+
 # Create root window
 
 root = tk.Tk()
@@ -89,8 +96,19 @@ db_dbName_entry.pack(fill='x', expand=True)
 
 # Save button
 
+save_button = ttk.Button(lf, text='Save')
+save_button.pack(side='left', ipadx=5, ipady=5, expand=True)
+
+# Clear button
+
+entries_list = [sql_address_entry, db_username_entry, db_pass_entry, db_port_entry, db_dbName_entry]
+clear_button = ttk.Button(lf, text='Clear all', command=lambda: clear_bt(entries_list))
+clear_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 
 # Cancel button
+
+cancel_button = ttk.Button(lf, text='Cancel', command=cancel_bt)
+cancel_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 
 
 
