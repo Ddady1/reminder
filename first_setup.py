@@ -41,6 +41,16 @@ def confirm():
     if answer:
         write_json(var_list, var_list_string)
 
+def check_fields():
+    for var in var_list:
+        con = var.get()
+        if con == '':
+            bt_stat = tk.DISABLED
+            return bt_stat
+        else:
+            bt_stat = tk.NORMAL
+            return bt_stat
+
 
 
 # Create root window
@@ -117,6 +127,9 @@ db_dbName_entry.insert(0, 'licenses')
 db_dbName_entry.pack(fill='x', expand=True)
 
 # Save button (need to be correct)
+#https://www.pythontutorial.net/tkinter/tkinter-validation/
+#https://www.tutorialspoint.com/how-to-interactively-validate-an-entry-widget-content-in-tkinter
+#bt_stat = check_fields()
 
 save_button = ttk.Button(lf, text='Save', command=check_json)
 save_button.pack(side='left', ipadx=5, ipady=5, expand=True)

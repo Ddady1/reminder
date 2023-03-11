@@ -1,16 +1,20 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter.messagebox import showinfo
+from tkinter.messagebox import showinfo, askyesno
 from ctypes import windll
+import subprocess
 
 
 windll.shcore.SetProcessDpiAwareness(1)
 
+def yesno_popup():
+    answer = askyesno(title='First Setup', message='Would you like to setup the connection now?\n You can do it later from the Edit->Settings')
+    if answer:
+        subprocess.call('first_setup.py', shell=True)
+
 def menu_about():
     showinfo(title='About', message='Reminder ver. 1.0.0\nBy David Hay Racha')
 
-def bt_click():
-    print('Button clicked')
 
 # Create the main window
 root = tk.Tk()
@@ -39,7 +43,7 @@ edit_menu.add_command(label='Add license...')
 edit_menu.add_command(label='Edit License...')
 edit_menu.add_command(label='Delete license')
 edit_menu.add_separator()
-edit_menu.add_command(label='Settings')
+edit_menu.add_command(label='Settings', command=lambda: subprocess.call('first_setup.py', shell=True))
 
 # Create the view menu
 
@@ -55,10 +59,8 @@ help_menu = tk.Menu(menu_bar, tearoff=False)
 menu_bar.add_cascade(label="Help", menu=help_menu)
 help_menu.add_command(label="About", command=menu_about)
 
+# Call first setup popup
 
-# Create button click with command attribute
-button = ttk.Button(root, text='Click Me!', command=bt_click)
-button.pack()
-
+yesno_popup()
 # Start the main event loop
 root.mainloop()
