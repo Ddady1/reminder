@@ -2,9 +2,9 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-username = "dady@tadiran-group.co.il"
-password = "DDrrdd1505"
-mail_from = "dady@tadiran-group.co.il"
+username = "ctxtest@tadiran-group.co.il"
+password = "Aa1234"
+mail_from = "ctxtest@tadiran-group.co.il"
 mail_to = "ddady1@gmail.com"
 mail_subject = "Test Subject from Python"
 mail_body = "This is a test message"

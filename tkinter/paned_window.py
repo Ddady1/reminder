@@ -8,7 +8,7 @@ root.geometry('300x200')
 # change style to classic (Windows only) NOT REALLY NEEDED ON FOR SHOW
 # to show the sash and handle
 style = ttk.Style()
-style.theme_use('classic')
+#style.theme_use('classic')
 
 # paned window
 pw = ttk.PanedWindow(orient=tk.HORIZONTAL)
@@ -18,9 +18,10 @@ left_list = tk.Listbox(root)
 left_list.pack(side=tk.LEFT)
 pw.add(left_list)
 
+
 # Right listbox
 right_list = tk.Listbox(root)
-right_list.pack(side=tk.LEFT)
+right_list.pack(side=tk.RIGHT)
 pw.add(right_list)
 
 # place the panedwindow on the root window

@@ -3,12 +3,27 @@ from tkinter import ttk
 from tkinter.messagebox import showinfo, askyesno
 from ctypes import windll
 import subprocess
+import os
+from mysql.connector import connect, Error
+import json
+import time
+from sql_connection import connect_sql
+
 
 
 windll.shcore.SetProcessDpiAwareness(1)
 
+def check_json():
+    path = 'assets/secret.json'
+    if not os.path.isfile(path):
+        yesno_popup()
+    else:
+        connect_sql()
+
+
+
 def yesno_popup():
-    answer = askyesno(title='First Setup', message='Would you like to setup the connection now?\n You can do it later from the Edit->Settings')
+    answer = askyesno(title='First Setup', message='In order to connect to the database, some details are needed.\nWould you like to setup the connection now?\nYou can do it later from the Edit->Settings menu.')
     if answer:
         subprocess.call('first_setup.py', shell=True)
 
@@ -61,6 +76,12 @@ help_menu.add_command(label="About", command=menu_about)
 
 # Call first setup popup
 
-yesno_popup()
+###yesno_popup()
+
+check_json()
+
+
+
 # Start the main event loop
 root.mainloop()
+

@@ -57,7 +57,7 @@ def check_fields():
 
 root = tk.Tk()
 root.title('Initial setup')
-root.geometry('600x400+150+150')
+root.geometry('600x400+250+250')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
 
