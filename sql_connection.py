@@ -1,3 +1,10 @@
+import time
+
+import tkinter as tk
+from tkinter import ttk
+from tkinter.messagebox import showinfo, askyesno
+from ctypes import windll
+import subprocess
 from mysql.connector import connect, Error
 import json
 
@@ -15,9 +22,55 @@ def connect_sql():
                 password=config.get('db_pass'),
                 database=config.get('db_dbName')
         ) as connection:
-            print('Connection with MySQL server was established')
+            return 'Connection with MySQL server was established'
+            #print('Connection with MySQL server was established')
             #time.sleep(3)
             #check_db_exists(config.get('db_name'), connection)
 
     except Error as e:
             print(e)
+
+
+def progress():
+    pb['value'] = 0
+    while pb['value'] < 100:
+        pb['value'] += 5
+        root.update_idletasks()
+        time.sleep(0.2)
+
+    else:
+        showinfo(message='The progress completed!')
+
+# Create the main window
+root = tk.Tk()
+root.title('Reminder')
+root.geometry('600x400+250+250')
+root.iconbitmap('assets/reminder.ico')
+
+
+# PB sql connection label
+sql_connection_label = ttk.Label(root, text='Checking connectivity to SQL server:')
+sql_connection_label.place(x=10, y=30)
+
+
+# progressbar
+pb = ttk.Progressbar(
+    root,
+    orient='horizontal',
+    mode='determinate',
+    length=300
+)
+
+# place the progressbar
+#pb.grid(column=0, row=0, columnspan=2, padx=100, pady=20)
+pb.place(x=230, y=30, width=300)
+
+# PB sql connection status
+
+connection_status_label = ttk.Label(root, text=connect_sql(), foreground='green')
+connection_status_label.place(x=10, y=60)
+
+
+progress()
+# Start the main event loop
+root.mainloop()

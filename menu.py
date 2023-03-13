@@ -22,6 +22,8 @@ def check_json():
 
 
 
+
+
 def yesno_popup():
     answer = askyesno(title='First Setup', message='In order to connect to the database, some details are needed.\nWould you like to setup the connection now?\nYou can do it later from the Edit->Settings menu.')
     if answer:
