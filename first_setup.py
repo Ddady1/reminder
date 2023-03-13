@@ -26,7 +26,8 @@ def write_json(var_list, string_list):
     js_object = json.dumps(dict, indent=4)
     with open('assets/secret.json', 'w') as f:
         f.write(js_object)
-    root.quit()
+    from sql_connection import connect_sql
+    connect_sql()
 
 def cancel_bt():
     root.quit()

@@ -38,8 +38,8 @@ def progress():
         root.update_idletasks()
         time.sleep(0.2)
 
-    else:
-        showinfo(message='The progress completed!')
+    '''else:
+        showinfo(message='The progress completed!')'''
 
 # Create the main window
 root = tk.Tk()

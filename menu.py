@@ -7,7 +7,7 @@ import os
 from mysql.connector import connect, Error
 import json
 import time
-from sql_connection import connect_sql
+#from sql_connection import connect_sql
 
 
 
@@ -18,6 +18,7 @@ def check_json():
     if not os.path.isfile(path):
         yesno_popup()
     else:
+        from sql_connection import connect_sql
         connect_sql()
 
 
