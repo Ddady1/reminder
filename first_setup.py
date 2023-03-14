@@ -4,6 +4,7 @@ from tkinter.messagebox import showinfo, askyesno
 from ctypes import windll
 import os
 import json
+import subprocess
 
 
 windll.shcore.SetProcessDpiAwareness(1)
@@ -26,8 +27,9 @@ def write_json(var_list, string_list):
     js_object = json.dumps(dict, indent=4)
     with open('assets/secret.json', 'w') as f:
         f.write(js_object)
-    from sql_connection import connect_sql
-    connect_sql()
+    #from sql_connection import connect_sql
+    #connect_sql()
+    subprocess.call('sql_connection.py', shell=True)
 
 def cancel_bt():
     root.quit()

@@ -22,13 +22,17 @@ def connect_sql():
                 password=config.get('db_pass'),
                 database=config.get('db_dbName')
         ) as connection:
-            return 'Connection with MySQL server was established'
+            progress()
+            #time.sleep(5)
+            #sql_connection_label()
+            #showinfo(title='sql', message='Connection with MySQL server was established')
             #print('Connection with MySQL server was established')
             #time.sleep(3)
             #check_db_exists(config.get('db_name'), connection)
 
     except Error as e:
-            print(e)
+            #print(e)
+            showinfo(title='test', message='not working')
 
 
 def progress():
@@ -38,8 +42,14 @@ def progress():
         root.update_idletasks()
         time.sleep(0.2)
 
-    '''else:
-        showinfo(message='The progress completed!')'''
+    else:
+        #showinfo(message='The progress completed!')
+        connection_status_label = ttk.Label(root, text='Connection with MySQL server was established', foreground='green')
+        connection_status_label.place(x=10, y=60)
+
+def sql_connection_label():
+    connection_status_label = ttk.Label(root, text='Connection with MySQL server was established', foreground='green')
+    connection_status_label.place(x=10, y=60)
 
 # Create the main window
 root = tk.Tk()
@@ -67,10 +77,11 @@ pb.place(x=230, y=30, width=300)
 
 # PB sql connection status
 
-connection_status_label = ttk.Label(root, text=connect_sql(), foreground='green')
-connection_status_label.place(x=10, y=60)
+#connection_status_label = ttk.Label(root, text='Connection with MySQL server was established', foreground='green')
+#connection_status_label.place(x=10, y=60)
 
 
-progress()
+connect_sql()
+
 # Start the main event loop
 root.mainloop()

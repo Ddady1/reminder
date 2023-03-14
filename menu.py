@@ -18,8 +18,9 @@ def check_json():
     if not os.path.isfile(path):
         yesno_popup()
     else:
-        from sql_connection import connect_sql
-        connect_sql()
+        subprocess.call('sql_connection.py', shell=True)
+        '''from sql_connection import connect_sql
+        connect_sql()'''
 
 
 
