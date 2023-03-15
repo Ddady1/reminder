@@ -14,6 +14,9 @@ windll.shcore.SetProcessDpiAwareness(1)
 
 def connect_sql():
 
+    global con
+    global config
+
     with open('assets/secret.json') as f:
         config = json.load(f)
 
@@ -25,20 +28,16 @@ def connect_sql():
                 password=config.get('db_pass'),
                 database=config.get('db_dbName')
         ) as connection:
-            progress()
-            #time.sleep(5)
-            #sql_connection_label()
-            #showinfo(title='sql', message='Connection with MySQL server was established')
-            #print('Connection with MySQL server was established')
-            #time.sleep(3)
-            #check_db_exists(config.get('db_name'), connection)
+            con = connection
+            progress(10, 60, 1)
+
 
     except Error as e:
             #print(e)
-            showinfo(title='test', message=messages(5))
+            showinfo(title='Connection error.', message=messages(5))
 
 
-def progress():
+def progress(xval, yval, msg):
     pb['value'] = 0
     while pb['value'] < 100:
         pb['value'] += 5
@@ -47,8 +46,8 @@ def progress():
 
     else:
         #showinfo(message='The progress completed!')
-        connection_status_label = ttk.Label(root, text=messages(1), foreground='green', font=('Ariel', 10))
-        connection_status_label.place(x=10, y=60)
+        connection_status_label = ttk.Label(root, text=messages(msg), foreground='green', font=('Ariel', 10))
+        connection_status_label.place(x=xval, y=yval)
 
 def messages(val):
 
@@ -61,7 +60,35 @@ def messages(val):
     elif val == 4:
         return 'Checking connectivity to SQL server:'
     elif val == 5:
-        return 'Could not connect with MySQL. Please check connection details'
+        return 'Could not connect with MySQL. Please check connection details and try again.'
+    elif val == 6:
+        return 'Database by this name already exists'
+
+def check_db_exist():
+    db = con.cursor()
+    db.execute('show databases')
+    lst = db.fetchall()
+    i = 0
+    while i < len(lst):
+        if config.get('db_dbName') in lst[i]:
+            showinfo(title='DB status', message=messages(6))
+            # check tables existance code
+        else:
+            i += 1
+    create_db()
+
+
+def create_db():
+    dbname = config.get('db_dbName')
+    create_db_query = f'CREATE DATABASE {dbname}'
+
+    try:
+        with con.cursor() as cursor:
+            cursor.execute(create_db_query)
+            progress(10, 120, 2)
+    except Error as e:
+        showinfo(title='Error', message=e)
+
 # Create the main window
 
 root = tk.Tk()
@@ -91,6 +118,7 @@ pb.place(x=230, y=30, width=300)
 
 
 connect_sql()
+check_db_exist()
 
 # Start the main event loop
 root.mainloop()
