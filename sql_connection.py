@@ -118,7 +118,7 @@ pb.place(x=230, y=30, width=300)
 
 
 connect_sql()
-check_db_exist()
+#check_db_exist()
 
 # Start the main event loop
 root.mainloop()

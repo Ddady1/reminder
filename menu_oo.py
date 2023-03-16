@@ -11,7 +11,7 @@ import time
 
 class App(tk.Tk):
     def __init__(self):
-        super().__init__()
+        super(App, self).__init__()
 
         # Create the main window
         #root = tk.Tk()
@@ -46,8 +46,8 @@ class App(tk.Tk):
 
     def create_menu(self):
         # Create the menu bar
-        menu_bar = tk.Menu(app)
-        app.config(menu=menu_bar)
+        menu_bar = tk.Menu(self)
+        self.config(menu=menu_bar)
 
         # Create the file menu
         file_menu = tk.Menu(menu_bar, tearoff=False)
@@ -56,7 +56,7 @@ class App(tk.Tk):
         file_menu.add_command(label="Print")
         file_menu.add_command(label="Export")
         file_menu.add_separator()
-        file_menu.add_command(label="Exit", command=root.quit)
+        file_menu.add_command(label="Exit", command=self.quit)
 
         # Create the edit menu
 
@@ -80,13 +80,15 @@ class App(tk.Tk):
         # Create the help menu
         help_menu = tk.Menu(menu_bar, tearoff=False)
         menu_bar.add_cascade(label="Help", menu=help_menu)
-        help_menu.add_command(label="About", command=menu_about)
+        help_menu.add_command(label="About", command=self.menu_about)
+
+
 
 # Call first setup popup
 
 ###yesno_popup()
 
-check_json()
+
 
 
 
@@ -96,4 +98,7 @@ check_json()
 
 if __name__ == "__main__":
     app = App()
+    app.check_json()
     app.mainloop()
+
+    #app.mainloop()
