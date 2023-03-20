@@ -14,7 +14,7 @@ windll.shcore.SetProcessDpiAwareness(1)
 
 def connect_sql():
 
-    global con
+    #global con
     global config
 
     with open('assets/secret.json') as f:
@@ -36,6 +36,8 @@ def connect_sql():
             #print(e)
             showinfo(title='Connection error.', message=messages(5))
 
+    return con
+
 
 def progress(xval, yval, msg):
     pb['value'] = 0
@@ -48,6 +50,7 @@ def progress(xval, yval, msg):
         #showinfo(message='The progress completed!')
         connection_status_label = ttk.Label(root, text=messages(msg), foreground='green', font=('Ariel', 10))
         connection_status_label.place(x=xval, y=yval)
+
 
 def messages(val):
 
@@ -64,7 +67,8 @@ def messages(val):
     elif val == 6:
         return 'Database by this name already exists'
 
-def check_db_exist():
+def check_db_exist(con):
+
     db = con.cursor()
     db.execute('show databases')
     lst = db.fetchall()
@@ -75,7 +79,7 @@ def check_db_exist():
             # check tables existance code
         else:
             i += 1
-    create_db()
+    #create_db()
 
 
 def create_db():
@@ -117,8 +121,9 @@ pb.place(x=230, y=30, width=300)
 
 
 
-connect_sql()
-#check_db_exist()
+con = connect_sql()
+
+check_db_exist(con)
 
 # Start the main event loop
 root.mainloop()
