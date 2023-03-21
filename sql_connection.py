@@ -12,7 +12,7 @@ import json
 
 
 windll.shcore.SetProcessDpiAwareness(1)
-
+#dbExist = False
 
 def connect_sql():
 
@@ -47,7 +47,8 @@ def connect_sql():
             user=config.get('db_username'),
             password=config.get('db_pass')
         )
-        progress(10, 60, 1)
+        progressbar_position(230, 30, 300)
+        progress(10, 60, 1, 'green')
 
     except Error as e:
         showinfo(title='Connection error.', message=messages(5))
@@ -55,7 +56,7 @@ def connect_sql():
     return connection
 
 
-def progress(xval, yval, msg):
+def progress(xval, yval, msg, color):
     pb['value'] = 0
     while pb['value'] < 100:
         pb['value'] += 5
@@ -64,8 +65,20 @@ def progress(xval, yval, msg):
 
     else:
         #showinfo(message='The progress completed!')
-        connection_status_label = ttk.Label(root, text=messages(msg), foreground='green', font=('Ariel', 10))
-        connection_status_label.place(x=xval, y=yval)
+        #connection_status_label = ttk.Label(root, text=messages(msg), foreground='green', font=('Ariel', 10))
+        #connection_status_label.place(x=xval, y=yval)
+        result_labels_position(xval, yval, msg, color)
+
+
+def progressbar_position(xval, yval, width):
+
+    pb.place(x=xval, y=yval, width=width)
+
+
+def result_labels_position(xval, yval, msg, color):
+
+    result_labels = ttk.Label(root, text=messages(msg), foreground=color, font=('Ariel', 10))
+    result_labels.place(x=xval, y=yval)
 
 
 def messages(val):
@@ -84,19 +97,26 @@ def messages(val):
         return 'Database by this name already exists.\nWould like to overwrite it?\nCAUTION: Deleting the database will erase permanently all data in it!'
     elif val == 7:
         return 'Checking if Database already exists:'
+    elif val == 8:
+        return 'Deleting old Database'
+    elif val == 9:
+        return 'Database already exists!!!'
 
 def check_db_exist(con):
 
+    progressbar_position(230, 90, 300)
+    progress(10, 120, 9, 'red')
     db = con.cursor()
     db.execute('show databases')
     lst = db.fetchall()
     i = 0
     while i < len(lst):
         if config.get('db_dbName') in lst[i]:
+            #global dbExist
+            #dbExist = True
             answer = askyesno(title='DB status', message=messages(6))
             if answer:
-                print('Deleting db')
-                #db.execute('DROP DATABASE ' + config.get('db_dbName')) # NEED TO UNTAG THIS LINE ON PRODUCTION
+                db.execute('DROP DATABASE ' + config.get('db_dbName')) # NEED TO UNTAG THIS LINE ON PRODUCTION
                 # check tables existance code
         else:
             i += 1
@@ -143,7 +163,8 @@ pb = ttk.Progressbar(
 
 # place the progressbar
 
-pb.place(x=230, y=30, width=300)
+#pb.place(x=230, y=30, width=300)
+#progressbar_position(230, 30, 300)
 
 
 
