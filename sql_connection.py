@@ -45,7 +45,8 @@ def connect_sql():
         connection = mysql.connector.Connect(
             host=config.get('sql_address'),
             user=config.get('db_username'),
-            password=config.get('db_pass')
+            password=config.get('db_pass'),
+            database=config.get('db_dbName')
         )
         progressbar_position(230, 30, 300)
         progress(10, 60, 1, 'green')
@@ -135,6 +136,9 @@ def check_db_exist(con):
 
                 # check tables existance code
             else:
+                #create_table(con)
+                check_table_exist(con)
+                #show_db(con) # for checking purposes
                 break
         else:
             i += 1
@@ -153,6 +157,51 @@ def create_db(con):
             progress(10, 210, 2, 'green')
     except Error as e:
         showinfo(title='Error', message=e)
+
+    check_table_exist(con)
+
+
+def check_table_exist(con):
+
+    dbname = config.get('db_dbName')
+    show_table = f'DESCRIBE license'
+    try:
+        with con.cursor() as cursor:
+            cursor.execute(show_table)
+            result = cursor.fetchall()
+            for row in result:
+                print(row)
+    except Error as e:
+        showinfo(title='Error', message=e)
+
+
+def create_table(con):
+
+    create_table_q = '''
+    CREATE TABLE lic (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first VARCHAR(100)
+    )
+    '''
+
+    try:
+        with con.cursor() as cursor:
+            cursor.execute(create_table_q)
+            con.commit()
+
+    except Error as e:
+        showinfo(title='Error', message=e)
+
+
+# for checking purposes
+'''def show_db(con):
+        # Show DB
+    show_db_query = "SHOW DATABASES"
+    with con.cursor() as cursor:
+        cursor.execute(show_db_query)
+        for db in cursor:
+            print(db)'''
+
 
 # Create the main window
 
