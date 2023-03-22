@@ -164,15 +164,16 @@ def create_db(con):
 def check_table_exist(con):
 
     dbname = config.get('db_dbName')
-    show_table = f'DESCRIBE license'
+    show_table = 'DESCRIBE license'
     try:
         with con.cursor() as cursor:
             cursor.execute(show_table)
             result = cursor.fetchall()
+            print(result)
             for row in result:
                 print(row)
     except Error as e:
-        showinfo(title='Error', message=e)
+        showinfo(title='Error Checking Table', message=e)
 
 
 def create_table(con):
@@ -190,7 +191,7 @@ def create_table(con):
             con.commit()
 
     except Error as e:
-        showinfo(title='Error', message=e)
+        showinfo(title='Error Creating Table', message=e)
 
 
 # for checking purposes
