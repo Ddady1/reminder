@@ -14,7 +14,7 @@ import json
 windll.shcore.SetProcessDpiAwareness(1)
 #dbExist = False
 
-def connect_sql():
+def connect_sql(flag):
 
     #global con
     global config
@@ -48,6 +48,8 @@ def connect_sql():
             password=config.get('db_pass'),
             database=config.get('db_dbName')
         )
+        if not flag:
+            return connection
         progressbar_position(230, 30, 300)
         progress(10, 60, 1, 'green')
 
@@ -136,8 +138,8 @@ def check_db_exist(con):
 
                 # check tables existance code
             else:
-                #create_table(con)
-                check_table_exist(con)
+                create_table(con)
+                #check_table_exist(con)
                 #show_db(con) # for checking purposes
                 break
         else:
@@ -158,7 +160,8 @@ def create_db(con):
     except Error as e:
         showinfo(title='Error Creating DB', message=e)
 
-    check_table_exist(con)
+    #check_table_exist(con)
+    create_table(con)
 
 
 def check_table_exist(con):
@@ -178,6 +181,7 @@ def check_table_exist(con):
 
 def create_table(con):
 
+    con = connect_sql(False)
     create_table_q = '''
     CREATE TABLE lic (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -192,6 +196,19 @@ def create_table(con):
 
     except Error as e:
         showinfo(title='Error Creating Table', message=e)
+
+    #show_tables()
+
+
+# For checking puposes
+
+'''def show_tables():
+
+    con = connect_sql(False)
+    with con.cursor() as cursor:
+        cursor.execute('SHOW TABLES')
+        for t in cursor:
+            print(t)'''
 
 
 # for checking purposes
@@ -243,7 +260,7 @@ pb = ttk.Progressbar(
 
 
 
-con = connect_sql()
+con = connect_sql(True)
 
 check_db_exist(con)
 
