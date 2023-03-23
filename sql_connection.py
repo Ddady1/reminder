@@ -156,14 +156,14 @@ def create_db(con):
             progressbar_position(230, 180, 300)
             progress(10, 210, 2, 'green')
     except Error as e:
-        showinfo(title='Error', message=e)
+        showinfo(title='Error Creating DB', message=e)
 
     check_table_exist(con)
 
 
 def check_table_exist(con):
 
-    dbname = config.get('db_dbName')
+
     show_table = 'DESCRIBE license'
     try:
         with con.cursor() as cursor:
