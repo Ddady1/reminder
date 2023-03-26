@@ -114,6 +114,8 @@ def messages(val):
         return 'Database already exists!!!'
     elif val == 10:
         return 'Creating Database:'
+    elif val == 11:
+        return 'Creating Tables:'
 
 def check_db_exist(con):
 
@@ -138,7 +140,7 @@ def check_db_exist(con):
 
                 # check tables existance code
             else:
-                create_table(con)
+                create_table()
                 #check_table_exist(con)
                 #show_db(con) # for checking purposes
                 break
@@ -161,7 +163,7 @@ def create_db(con):
         showinfo(title='Error Creating DB', message=e)
 
     #check_table_exist(con)
-    create_table(con)
+    create_table()
 
 
 def check_table_exist(con):
@@ -179,7 +181,7 @@ def check_table_exist(con):
         showinfo(title='Error Checking Table', message=e)
 
 
-def create_table(con):
+def create_table():
 
     con = connect_sql(False)
     create_table_q = '''
@@ -193,6 +195,8 @@ def create_table(con):
         with con.cursor() as cursor:
             cursor.execute(create_table_q)
             con.commit()
+            progressbar_position(230, 240, 300)
+            progress(10, 270, 3, 'green')
 
     except Error as e:
         showinfo(title='Error Creating Table', message=e)
@@ -244,6 +248,11 @@ db_exist_label.place(x=10, y=90)
 db_create_label = ttk.Label(root, text=messages(10))
 db_create_label.place(x=10, y=180)
 
+# PB creating Tables
+
+table_creat_label = ttk.Label(root, text=messages(11))
+table_creat_label.place(x=10, y=240)
+
 
 # progressbar
 pb = ttk.Progressbar(
@@ -257,7 +266,6 @@ pb = ttk.Progressbar(
 
 #pb.place(x=230, y=30, width=300)
 #progressbar_position(230, 30, 300)
-
 
 
 con = connect_sql(True)
