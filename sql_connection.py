@@ -187,7 +187,20 @@ def create_table():
     create_table_q = '''
     CREATE TABLE lic (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    first VARCHAR(100)
+    product_name VARCHAR(100),
+    manufacturer VARCHAR(50),
+    supplier VARCHAR(50),
+    start_date DATE,
+    expiration_date DATE,
+    invoice_number VARCHAR(25),
+    quantity INT,
+    invoice_date DATE,
+    license_number VARCHAR(50),
+    authorization_number VARCHAR(50),
+    contact_f_name VARCHAR(50),
+    contact_l_name VARCHAR(50),
+    contact_email VARCHAR(50),
+    contact_phone VARCHAR(20)    
     )
     '''
 
@@ -201,17 +214,18 @@ def create_table():
     except Error as e:
         showinfo(title='Error Creating Table', message=e)
 
-    #show_tables()
+    #show_columns()
+
 
 # for checking purposes
 
-'''def show_columns():
+def show_columns():
     con = connect_sql(False)
     with con.cursor() as cursor:
         cursor.execute('desc lic')
         result = cursor.fetchall()
         for row in result:
-            print(row)'''
+            print(row)
 
 
 # For checking puposes
@@ -277,7 +291,6 @@ pb = ttk.Progressbar(
 #pb.place(x=230, y=30, width=300)
 #progressbar_position(230, 30, 300)
 
-show_columns()
 con = connect_sql(True)
 
 check_db_exist(con)
