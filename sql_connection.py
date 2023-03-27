@@ -252,7 +252,7 @@ def show_columns():
 # Create the main window
 
 root = tk.Tk()
-root.title('Reminder')
+root.title('Reminder-DB connect')
 root.geometry('600x400+250+250')
 root.iconbitmap('assets/reminder.ico')
 

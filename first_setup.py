@@ -59,7 +59,7 @@ def check_fields():
 # Create root window
 
 root = tk.Tk()
-root.title('Initial setup')
+root.title('Reminder-Initial setup')
 root.geometry('600x400+250+250')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
