@@ -203,6 +203,16 @@ def create_table():
 
     #show_tables()
 
+# for checking purposes
+
+'''def show_columns():
+    con = connect_sql(False)
+    with con.cursor() as cursor:
+        cursor.execute('desc lic')
+        result = cursor.fetchall()
+        for row in result:
+            print(row)'''
+
 
 # For checking puposes
 
@@ -267,7 +277,7 @@ pb = ttk.Progressbar(
 #pb.place(x=230, y=30, width=300)
 #progressbar_position(230, 30, 300)
 
-
+show_columns()
 con = connect_sql(True)
 
 check_db_exist(con)
