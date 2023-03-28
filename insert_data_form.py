@@ -14,7 +14,7 @@ windll.shcore.SetProcessDpiAwareness(1)
 
 root = tk.Tk()
 root.title('Reminder-Data Form')
-root.geometry('800x500+250+250')
+root.geometry('700x500+250+250')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
 
@@ -43,17 +43,17 @@ product_label = ttk.Label(root, text='Product Name:', foreground='blue', font=('
 product_label.place(x=20, y=10)
 
 product_entry = ttk.Entry(root, textvariable=product_name)
-product_entry.place(x=115, y=10, width=300)
+product_entry.place(x=115, y=10, width=200)
 product_entry.focus()
 
 
 # manufacture name
 
-manufacture_label = ttk.Label(root, text='Manufaturer Name:', foreground='blue', font=('Ariel', 10))
-manufacture_label.place(x=450, y=10)
+manufacture_label = ttk.Label(root, text='Manufacturer Name:', foreground='blue', font=('Ariel', 10))
+manufacture_label.place(x=355, y=10)
 
 manufacture_entry = ttk.Entry(root, textvariable=manufacturer)
-manufacture_entry.place(x=565, y=10, width=200)
+manufacture_entry.place(x=480, y=10, width=200)
 
 
 # supplier name
@@ -82,6 +82,50 @@ expired_date_label.place(x=500, y=100)
 expired_date_entry = ttk.Entry(root, textvariable=exp_date)
 expired_date_entry.place(x=600, y=100, width=80)
 
+
+# invoice number
+
+inv_num_label = ttk.Label(root, text='Invoice Number:', foreground='blue', font=('Ariel', 10))
+inv_num_label.place(x=20, y=190)
+
+inv_num_entry = ttk.Entry(root, textvariable=invoice_no)
+inv_num_entry.place(x=117, y=190)
+
+
+# quantity
+
+qty_label = ttk.Label(root, text='Quantity:', foreground='blue', font=('Ariel', 10))
+qty_label.place(x=310, y=190)
+
+qty_entry = ttk.Entry(root, textvariable=qty)
+qty_entry.place(x=370, y=190, width=80)
+
+
+# invoice date
+
+inv_date_label = ttk.Label(root, text='Invoice Date:', foreground='blue', font=('Ariel', 10))
+inv_date_label.place(x=520, y=190)
+
+inv_date_entry = ttk.Entry(root, textvariable=invoice_date)
+inv_date_entry.place(x=600, y=190, width=80)
+
+
+# license number
+
+lic_number_label = ttk.Label(root, text='License Number:', foreground='blue', font=('Ariel', 10))
+lic_number_label.place(x=20, y=280)
+
+lic_number_entry = ttk.Entry(root, textvariable=lic_no)
+lic_number_entry.place(x=123, y=280, width=200)
+
+
+# authorization number
+
+auth_no_label = ttk.Label(root, text='Authorization Number:', foreground='blue', font=('Ariel', 10))
+auth_no_label.place(x=345, y=280)
+
+auth_no_entry = ttk.Entry(root, textvariable=autho_no)
+auth_no_entry.place(x=480, y=280, width=200)
 
 
 
