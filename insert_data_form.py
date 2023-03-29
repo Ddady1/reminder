@@ -15,7 +15,7 @@ text_color = 'DodgerBlue4'
 
 root = tk.Tk()
 root.title('Reminder-Data Form')
-root.geometry('450x700+250+250')
+root.geometry('450x800+250+250')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
 
@@ -135,45 +135,48 @@ auth_no_entry = ttk.Entry(root, textvariable=autho_no)
 auth_no_entry.place(x=20, y=470, width=300)
 
 
+# line seperator with label
+
+seperator = ttk.Separator(root, orient='horizontal')
+seperator.place(x=18, y=500, width=400)
+sep_contact_label = ttk.Label(root, text='Contact person information', foreground=text_color, font=('Ariel', 10, 'bold'))
+sep_contact_label.place(x=20, y=510)
+
+
 # contact first name
 
 first_name_label = ttk.Label(root, text='First Name:', foreground=text_color, font=('Ariel', 10))
-first_name_label.place(x=20, y=500)
+first_name_label.place(x=20, y=540)
 
 first_name_entry = ttk.Entry(root, textvariable=person_Fname)
-first_name_entry.place(x=20, y=520)
+first_name_entry.place(x=20, y=560)
 
 
 # contact last name
 
 last_name_label = ttk.Label(root, text='Last Name:', foreground=text_color, font=('Ariel', 10))
-last_name_label.place(x=195, y=500)
+last_name_label.place(x=195, y=540)
 
 last_name_entry = ttk.Entry(root, textvariable=person_Lname)
-last_name_entry.place(x=195, y=520)
+last_name_entry.place(x=195, y=560)
 
 
 # contact email
 
 email_label = ttk.Label(root, text='Email Address:', foreground=text_color, font=('Ariel', 10))
-email_label.place(x=20, y=550)
+email_label.place(x=20, y=590)
 
 email_entry = ttk.Entry(root, textvariable=person_email)
-email_entry.place(x=20, y=570, width=250)
+email_entry.place(x=20, y=610, width=250)
 
 
 # contact mobile
 
 mobile_label = ttk.Label(root, text='Phone\Mobile number:', foreground=text_color, font=('Ariel', 10))
-mobile_label.place(x=20, y=600)
+mobile_label.place(x=20, y=640)
 
 mobile_entry = ttk.Entry(root, textvariable=person_mobile)
-mobile_entry.place(x=20, y=620)
-
-
-
-
-
+mobile_entry.place(x=20, y=670)
 
 
 
