@@ -24,7 +24,11 @@ root.iconbitmap('assets/reminder.ico')
 
 # creating calendar obj
 
-cal = Calendar(root, selectmode='day', year=2023 ,month=4, date=2)
+cal = Calendar(root, selectmode='day', year=2023, month=4, date=2,
+               headersbackground='DodgerBlue4', headersforeground='white',
+               normalforeground='DodgerBlue4', bordercolor='DodgerBlue4',
+               showweeknumbers=False, background='DodgerBlue4', firstweekday='sunday', weekendays=[6, 7],
+               showothermonthdays=False)
 cal.pack(pady=40)
 
 
