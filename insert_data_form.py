@@ -5,6 +5,10 @@ from ctypes import windll
 import os
 import json
 import subprocess
+import calendar_picker
+
+def empty_text(e):
+    start_date_entry.delete(0, 'end')
 
 
 windll.shcore.SetProcessDpiAwareness(1)
@@ -78,7 +82,10 @@ start_date_label = ttk.Label(root, text='Start Date:', foreground=text_color, fo
 start_date_label.place(x=20, y=200)
 
 start_date_entry = ttk.Entry(root, textvariable=start_date)
+start_date_entry.insert(0, 'dd/mm/yyyy')
 start_date_entry.place(x=20, y=220, width=80)
+start_date_entry.bind('<FocusIn>', empty_text)
+
 
 
 # expiration date

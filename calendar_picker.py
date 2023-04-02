@@ -4,6 +4,16 @@ from tkcalendar import Calendar
 from ctypes import windll
 from datetime import date
 
+
+def update_label(event):
+    date_label.config(text='Selected Date: ' + cal.get_date())
+    # print(cal.get_date()) # for checking
+
+def date_var():
+    datevar = cal.get_date()
+    print(cal.get_date())
+
+
 windll.shcore.SetProcessDpiAwareness(1)
 
 text_color = 'DodgerBlue4'
@@ -20,7 +30,7 @@ todaysdate = today.strftime('%d/%m/%Y')
 
 root = tk.Tk()
 root.title('Calendar')
-root.geometry('400x400+350+350')
+root.geometry('400x330+350+350')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
 
@@ -30,18 +40,29 @@ root.iconbitmap('assets/reminder.ico')
 
 # creating calendar obj
 
-cal = Calendar(root, selectmode='day', year=2023, month=4, date=2,
+cal = Calendar(root, selectmode='day',
                headersbackground='DodgerBlue4', headersforeground='white',
                normalforeground='DodgerBlue4', bordercolor='DodgerBlue4',
-               showweeknumbers=False, background='DodgerBlue4', firstweekday='sunday', weekendays=[6, 7],
-               showothermonthdays=False)
-cal.pack(pady=40)
+               showweeknumbers=False, background='DodgerBlue4', firstweekday='sunday', weekendays=[7],
+               showothermonthdays=False, date_pattern='d/m/y')
+cal.pack(pady=20)
+
+cal.bind('<<CalendarSelected>>', update_label)
+
+# date label
+
+date_label = ttk.Label(root, foreground='DodgerBlue4', text='Selected Date: ' + cal.get_date())
+date_label.pack(pady=20)
+# print(cal.get_date()) # for checking
 
 
 # create button
 
-btn = ttk.Button(root, text='Submit')
+btn = tk.Button(root, text='Submit', fg='DodgerBlue4', command=date_var)
 btn.pack()
+
+
+
 
 
 
