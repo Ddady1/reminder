@@ -5,10 +5,11 @@ from ctypes import windll
 import os
 import json
 import subprocess
-import calendar_picker
+#import calendar_picker
 
 def empty_text(e):
     start_date_entry.delete(0, 'end')
+    result = subprocess.run(['python', 'calendar_picker.py'], capture_output=)
 
 
 windll.shcore.SetProcessDpiAwareness(1)
