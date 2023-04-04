@@ -11,7 +11,8 @@ def update_label(event):
 
 def date_var():
     datevar = cal.get_date()
-    print(cal.get_date())
+    print(datevar)
+
 
 
 windll.shcore.SetProcessDpiAwareness(1)
@@ -60,6 +61,7 @@ date_label.pack(pady=20)
 
 btn = tk.Button(root, text='Submit', fg='DodgerBlue4', command=date_var)
 btn.pack()
+
 
 
 
