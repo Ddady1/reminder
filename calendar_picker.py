@@ -12,8 +12,7 @@ def update_label(event):
 def date_var():
     datevar = cal.get_date()
     print(datevar)
-
-
+    quit(root.quit)
 
 windll.shcore.SetProcessDpiAwareness(1)
 

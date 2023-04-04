@@ -1,3 +1,4 @@
+#import calendar_picker
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo, askyesno
@@ -7,10 +8,18 @@ import json
 import subprocess
 #import calendar_picker
 
-def empty_text(e):
+def get_start(e):
     start_date_entry.delete(0, 'end')
-    result = subprocess.check_output(['python', 'calendar_picker.py'], text=True)
-    start_date_entry.insert(0, result.rstrip())
+    #result = subprocess.check_output(['python', 'calendar_picker.py'], text=True)
+    result = subprocess.run(['python', 'calendar_picker.py'], capture_output=True, text=True)
+    start_date_entry.insert(0, result.stdout.rstrip())
+
+
+def get_expired(e):
+    expired_date_entry.delete(0, 'end')
+    #result = subprocess.check_output(['python', 'calendar_picker.py'], text=True)
+    result = subprocess.run(['python', 'calendar_picker.py'], capture_output=True, text=True)
+    expired_date_entry.insert(0, result.stdout.rstrip())
 
 
 
@@ -87,7 +96,7 @@ start_date_label.place(x=20, y=200)
 start_date_entry = ttk.Entry(root, textvariable=start_date)
 #start_date_entry.insert(0, 'dd/mm/yyyy')
 start_date_entry.place(x=20, y=220, width=80)
-start_date_entry.bind('<FocusIn>', empty_text)
+start_date_entry.bind('<FocusIn>', get_start)
 
 
 
@@ -98,6 +107,7 @@ expired_date_label.place(x=200, y=200)
 
 expired_date_entry = ttk.Entry(root, textvariable=exp_date)
 expired_date_entry.place(x=200, y=220, width=80)
+expired_date_entry.bind('<FocusIn>', get_expired)
 
 
 # invoice number
