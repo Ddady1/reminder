@@ -22,6 +22,12 @@ def get_expired(e):
     expired_date_entry.insert(0, result.stdout.rstrip())
 
 
+def get_inv_date(e):
+    inv_date_entry.delete(0, 'end')
+    result = subprocess.run(['python', 'calendar_picker.py'], capture_output=True, text=True)
+    inv_date_entry.insert(0, result.stdout.rstrip())
+
+
 
 windll.shcore.SetProcessDpiAwareness(1)
 
@@ -135,6 +141,7 @@ inv_date_label.place(x=20, y=350)
 
 inv_date_entry = ttk.Entry(root, textvariable=invoice_date)
 inv_date_entry.place(x=20, y=370, width=80)
+inv_date_entry.bind('<FocusIn>', get_inv_date)
 
 
 # license number
