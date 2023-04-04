@@ -28,6 +28,12 @@ def get_inv_date(e):
     inv_date_entry.insert(0, result.stdout.rstrip())
 
 
+def clear_btn(entries):
+    for en in entries:
+        en.delete(0, 'end')
+        product_entry.focus()
+
+
 
 windll.shcore.SetProcessDpiAwareness(1)
 
@@ -37,7 +43,7 @@ text_color = 'DodgerBlue4'
 
 root = tk.Tk()
 root.title('Reminder-Data Form')
-root.geometry('450x800+250+250')
+root.geometry('450x800+350+150')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
 
@@ -206,6 +212,31 @@ mobile_entry = ttk.Entry(root, textvariable=person_mobile)
 mobile_entry.place(x=20, y=670)
 
 
+# line seperator
+
+seperator = ttk.Separator(root, orient='horizontal')
+seperator.place(x=18, y=700, width=400)
+
+
+# submit button
+
+btn_submit = tk.Button(root, text='Submit\nDetails', foreground=text_color, font=('Ariel', 12, 'bold'), width=10)
+btn_submit.place(x=30, y=730)
+
+
+# clear button
+
+entries_list = [product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
+                inv_num_entry, qty_entry, inv_date_entry, lic_number_entry, auth_no_entry, first_name_entry,
+                last_name_entry, email_entry, mobile_entry]
+btn_clear = tk.Button(root, text='Clear\nForm', foreground=text_color, font=('Ariel', 12, 'bold'), width=10, command=lambda: clear_btn(entries_list))
+btn_clear.place(x=170, y=730)
+
+
+# cancel button
+
+btn_cancel = tk.Button(root, text='Cancel', foreground=text_color, font=('Ariel', 12, 'bold'), width=10, command=root.quit, pady=10)
+btn_cancel.place(x=310, y=730)
 
 
 
