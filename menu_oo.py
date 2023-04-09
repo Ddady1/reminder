@@ -62,7 +62,7 @@ class App(tk.Tk):
 
         edit_menu = tk.Menu(menu_bar, tearoff=False)
         menu_bar.add_cascade(label='Edit', menu=edit_menu)
-        edit_menu.add_command(label='Add license...')
+        edit_menu.add_command(label='Add license...', command=lambda: subprocess.run(['python', 'insert_data_form.py']))
         edit_menu.add_command(label='Edit License...')
         edit_menu.add_command(label='Delete license')
         edit_menu.add_separator()

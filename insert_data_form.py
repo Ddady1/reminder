@@ -34,6 +34,11 @@ def clear_btn(entries):
         product_entry.focus()
 
 
+'''def submit_btn(enteries):
+    for en in enteries:'''
+
+
+
 
 windll.shcore.SetProcessDpiAwareness(1)
 
