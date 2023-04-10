@@ -216,6 +216,11 @@ def create_table():
 
     #show_columns()
 
+    showinfo(title='DB Setup', message='Database setup was completed successfuly\n'
+                   'Press OK to close and continue.')
+
+    quit(root.quit)
+
 
 # for checking purposes
 
@@ -276,6 +281,12 @@ db_create_label.place(x=10, y=180)
 
 table_creat_label = ttk.Label(root, text=messages(11))
 table_creat_label.place(x=10, y=240)
+
+
+# cancel button
+
+btn_cancel = tk.Button(root, text='Cancel', fg='DodgerBlue4', command=root.quit)
+btn_cancel.place(x=400, y=330)
 
 
 # progressbar
