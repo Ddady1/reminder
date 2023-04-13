@@ -285,8 +285,8 @@ table_creat_label.place(x=10, y=240)
 
 # cancel button
 
-btn_cancel = tk.Button(root, text='Cancel', fg='DodgerBlue4', command=root.quit)
-btn_cancel.place(x=400, y=330)
+'''btn_cancel = tk.Button(root, text='Cancel', fg='DodgerBlue4', command=root.quit)
+btn_cancel.place(x=400, y=330)'''
 
 
 # progressbar
