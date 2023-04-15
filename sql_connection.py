@@ -116,6 +116,8 @@ def messages(val):
         return 'Creating Database:'
     elif val == 11:
         return 'Creating Tables:'
+    elif val == 12:
+        return 'Table by this name already exists.\nWould like to overwrite it?\nCAUTION: Deleting the table will erase permanently all data in it!'
 
 def check_db_exist(con):
 
@@ -203,20 +205,29 @@ def create_table():
     contact_phone VARCHAR(20)    
     )
     '''
-
+    progressbar_position(230, 240, 300)
+    progress(10, 270, 3, 'green')
     try:
         with con.cursor() as cursor:
             cursor.execute(create_table_q)
             con.commit()
-            progressbar_position(230, 240, 300)
-            progress(10, 270, 3, 'green')
+            #progressbar_position(230, 240, 300)
+            #progress(10, 270, 3, 'green')
 
     except Error as e:
-        showinfo(title='Error Creating Table', message=e)
+        answer = askyesno(title='Error Creating Table', message=messages(12))
+        if answer:
+            cursor.execute('DROP TABLE lic')
+            showinfo(title='Table Deletion', message='Table was deleted successfully!')
+            create_table()
+        else:
+            quit(root.quit)
+
+
 
     #show_columns()
 
-    showinfo(title='DB Setup', message='Database setup was completed successfuly\n'
+    showinfo(title='DB Setup', message='Database setup was completed successfully\n'
                    'Press OK to close and continue.')
 
     quit(root.quit)
