@@ -1,3 +1,5 @@
+import img as img
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo, askyesno
@@ -5,9 +7,11 @@ from ctypes import windll
 import os
 import json
 import subprocess
-
+from PIL import ImageTk, Image
 
 windll.shcore.SetProcessDpiAwareness(1)
+
+
 
 def check_json():
     path = 'assets/secret.json'
@@ -64,6 +68,12 @@ root.geometry('600x400+250+250')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
 
+# Creating exclamation mark image
+
+exclamation_image = Image.open('assets/exclamationmark.png')
+exclamation_image = img.resize((50, 50), Image.ANTIALIAS)
+exclamation_image_lab = ImageTk.PhotoImage(exclamation_image)
+
 # Create variables
 
 sql_address = tk.StringVar()
@@ -90,6 +100,8 @@ lf.pack(fill='both', ipadx=10, ipady=50, padx=50, pady=20, anchor=tk.NW)
 
 sql_address_label = ttk.Label(lf, text='SQL server address:')
 sql_address_label.pack(fill='x', expand=True)
+sql_address_exa = tk.Label(image=exclamation_image_lab)
+sql_address_exa.place(x=150, y=150)
 
 sql_address_entry = ttk.Entry(lf, textvariable=sql_address)
 sql_address_entry.pack(fill='x', expand=True)
