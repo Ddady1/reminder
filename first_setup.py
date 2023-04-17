@@ -6,6 +6,7 @@ import os
 import json
 import subprocess
 from PIL import ImageTk, Image
+import time
 
 windll.shcore.SetProcessDpiAwareness(1)
 
@@ -19,6 +20,9 @@ def check_json():
 
 
 def write_json(var_list, string_list):
+    first_run_time = time.time()
+    string_list.append('first_run_time')
+    var_list.append(first_run_time)
     dict = {}
     i = 0
     for var in var_list:
