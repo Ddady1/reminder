@@ -66,7 +66,7 @@ def check_fields():
 
 root = tk.Tk()
 root.title('Reminder-Initial setup')
-root.geometry('600x400+250+250')
+root.geometry('600x450+250+250')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
 
@@ -83,9 +83,10 @@ db_username = tk.StringVar()
 db_pass = tk.StringVar()
 db_port = tk.StringVar()
 db_dbName = tk.StringVar()
+db_freq = tk.StringVar()
 
-var_list = [sql_address, db_username, db_pass, db_port, db_dbName]
-var_list_string = ['sql_address', 'db_username', 'db_pass', 'db_port', 'db_dbName']
+var_list = [sql_address, db_username, db_pass, db_port, db_dbName, db_freq]
+var_list_string = ['sql_address', 'db_username', 'db_pass', 'db_port', 'db_dbName', 'db_check_freq']
 
 # Setup grid
 
@@ -102,8 +103,8 @@ lf.pack(fill='both', ipadx=10, ipady=50, padx=50, pady=20, anchor=tk.NW)
 
 sql_address_label = ttk.Label(lf, text='SQL server address:')
 sql_address_label.pack(fill='x', expand=True)
-sql_address_exa = tk.Label(image=exclamation_image_lab)
-sql_address_exa.place(x=150, y=170)
+sql_address_exa = ttk.Label(image=exclamation_image_lab)
+sql_address_exa.place(x=155, y=42)
 
 sql_address_entry = ttk.Entry(lf, textvariable=sql_address)
 sql_address_entry.pack(fill='x', expand=True)
@@ -113,6 +114,8 @@ sql_address_entry.focus()
 
 db_username_label = ttk.Label(lf, text='DB Username:')
 db_username_label.pack(fill='x', expand=True)
+db_username_exa = ttk.Label(image=exclamation_image_lab)
+db_username_exa.place(x=130, y=98)
 
 db_username_entry = ttk.Entry(lf, textvariable=db_username)
 db_username_entry.pack(fill='x', expand=True)
@@ -121,14 +124,18 @@ db_username_entry.pack(fill='x', expand=True)
 
 db_pass_label = ttk.Label(lf, text='DB password:')
 db_pass_label.pack(fill='x', expand=True)
+db_pass_exa = ttk.Label(image=exclamation_image_lab)
+db_pass_exa.place(x=125, y=154)
 
 db_pass_entry = ttk.Entry(lf, textvariable=db_pass, show='*')
 db_pass_entry.pack(fill='x', expand=True)
 
 # DB port
 
-db_port_label = ttk.Label(lf, text='DB port (Default: 3306)')
+db_port_label = ttk.Label(lf, text='DB port: (Default: 3306)')
 db_port_label.pack(fill='x', expand=True)
+db_port_exa = ttk.Label(image=exclamation_image_lab)
+db_port_exa.place(x=175, y=210)
 
 db_port_entry = ttk.Entry(lf, textvariable=db_port)
 db_port_entry.insert(0, '3306')
@@ -136,12 +143,25 @@ db_port_entry.pack(fill='x', expand=True)
 
 # DB dbName
 
-db_dbName_label = ttk.Label(lf, text='DB name (Default: lisences)')
+db_dbName_label = ttk.Label(lf, text='DB name: (Default: licenses)')
 db_dbName_label.pack(fill='x', expand=True)
+db_dbName_exa = ttk.Label(image=exclamation_image_lab)
+db_dbName_exa.place(x=200, y=266)
 
 db_dbName_entry = ttk.Entry(lf, textvariable=db_dbName)
 db_dbName_entry.insert(0, 'licenses')
 db_dbName_entry.pack(fill='x', expand=True)
+
+#  DB checking frequency
+
+db_freq_label = ttk.Label(lf, text='DB existence checking frequency: (Default: always=0)')
+db_freq_label.pack(fill='x', expand=True)
+db_freq_exa = ttk.Label(image=exclamation_image_lab)
+db_freq_exa.place(x=335, y=324)
+
+db_freq_entry = ttk.Entry(lf, textvariable=db_freq)
+db_freq_entry.insert(0, 0)
+db_freq_entry.pack(fill='x', expand=True)
 
 # Save button (need to be correct)
 #https://www.pythontutorial.net/tkinter/tkinter-validation/
