@@ -181,7 +181,7 @@ save_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 
 # Clear button
 
-entries_list = [sql_address_entry, db_username_entry, db_pass_entry, db_port_entry, db_dbName_entry]
+entries_list = [sql_address_entry, db_username_entry, db_pass_entry, db_port_entry, db_dbName_entry, db_freq_entry]
 clear_button = ttk.Button(lf, text='Clear all', command=lambda: clear_bt(entries_list))
 clear_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 
