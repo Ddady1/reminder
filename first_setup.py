@@ -105,7 +105,7 @@ sql_address_label = ttk.Label(lf, text='SQL server address:')
 sql_address_label.pack(fill='x', expand=True)
 sql_address_exa = ttk.Label(image=exclamation_image_lab)
 sql_address_exa.place(x=155, y=42)
-ToolTip(sql_address_exa, msg='-The address of the SQL server')
+ToolTip(sql_address_exa, msg='The address of the SQL server')
 
 sql_address_entry = ttk.Entry(lf, textvariable=sql_address)
 sql_address_entry.pack(fill='x', expand=True)
@@ -117,7 +117,7 @@ db_username_label = ttk.Label(lf, text='DB Username:')
 db_username_label.pack(fill='x', expand=True)
 db_username_exa = ttk.Label(image=exclamation_image_lab)
 db_username_exa.place(x=130, y=98)
-ToolTip(db_username_exa, msg='-The username that was created with the DB')
+ToolTip(db_username_exa, msg='The username that was created with the DB')
 
 db_username_entry = ttk.Entry(lf, textvariable=db_username)
 db_username_entry.pack(fill='x', expand=True)
@@ -128,7 +128,7 @@ db_pass_label = ttk.Label(lf, text='DB password:')
 db_pass_label.pack(fill='x', expand=True)
 db_pass_exa = ttk.Label(image=exclamation_image_lab)
 db_pass_exa.place(x=125, y=154)
-ToolTip(db_pass_exa, msg='-The related username password')
+ToolTip(db_pass_exa, msg='The related username password')
 
 db_pass_entry = ttk.Entry(lf, textvariable=db_pass, show='*')
 db_pass_entry.pack(fill='x', expand=True)
@@ -139,7 +139,7 @@ db_port_label = ttk.Label(lf, text='DB port: (Default: 3306)')
 db_port_label.pack(fill='x', expand=True)
 db_port_exa = ttk.Label(image=exclamation_image_lab)
 db_port_exa.place(x=175, y=210)
-ToolTip(db_port_exa, msg='-The default port is 3306.\nYou can change it according to your needs.')
+ToolTip(db_port_exa, msg='The default port is 3306.\nYou can change it according to your needs.')
 
 db_port_entry = ttk.Entry(lf, textvariable=db_port)
 db_port_entry.insert(0, '3306')
@@ -151,7 +151,7 @@ db_dbName_label = ttk.Label(lf, text='DB name: (Default: licenses)')
 db_dbName_label.pack(fill='x', expand=True)
 db_dbName_exa = ttk.Label(image=exclamation_image_lab)
 db_dbName_exa.place(x=200, y=266)
-ToolTip(db_dbName_exa, msg='-The default DB name is licenses,\nbut you can change it according to your needs.')
+ToolTip(db_dbName_exa, msg='The default DB name is licenses,\nbut you can change it according to your needs.')
 
 db_dbName_entry = ttk.Entry(lf, textvariable=db_dbName)
 db_dbName_entry.insert(0, 'licenses')
@@ -163,7 +163,7 @@ db_freq_label = ttk.Label(lf, text='DB existence checking frequency: (Default: a
 db_freq_label.pack(fill='x', expand=True)
 db_freq_exa = ttk.Label(image=exclamation_image_lab)
 db_freq_exa.place(x=335, y=324)
-ToolTip(db_freq_exa, msg='-How frequantly do you want the program to check the existence of the DB and tables.\n'
+ToolTip(db_freq_exa, msg='How frequantly do you want the program to check the existence of the DB and tables.\n'
                          'The default is 0=Always, which means everytime you run the program.\n'
                          '1 is once a day. 2 is every 2 days since first run and etc.')
 
