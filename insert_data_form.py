@@ -35,7 +35,9 @@ def clear_btn(entries):
 
 
 def submit_btn(enteries):
-    print(enteries)
+    for entry in enteries:
+        print(entry.get())
+    clear_btn(enteries)
 
 
 
@@ -70,8 +72,6 @@ person_Lname = tk.StringVar()
 person_email = tk.StringVar()
 person_mobile = tk.StringVar()
 
-data_vars_list = [product_name, manufacturer, supplier_name, start_date, exp_date, invoice_no, qty, invoice_date, lic_no,
-                  autho_no, person_Fname, person_Lname, person_email, person_mobile]
 
 
 # main window label
@@ -228,7 +228,10 @@ seperator.place(x=18, y=700, width=400)
 
 # submit button
 
-btn_submit = tk.Button(root, text='Submit\nDetails', foreground=text_color, font=('Ariel', 12, 'bold'), width=10, command=lambda: submit_btn(data_vars_list))
+entries_list = [product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
+                inv_num_entry, qty_entry, inv_date_entry, lic_number_entry, auth_no_entry, first_name_entry,
+                last_name_entry, email_entry, mobile_entry]
+btn_submit = tk.Button(root, text='Submit\nDetails', foreground=text_color, font=('Ariel', 12, 'bold'), width=10, command=lambda: submit_btn(entries_list))
 btn_submit.place(x=30, y=730)
 
 
