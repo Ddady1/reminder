@@ -225,6 +225,11 @@ mobile_entry.place(x=20, y=670)
 seperator = ttk.Separator(root, orient='horizontal')
 seperator.place(x=18, y=700, width=400)
 
+# mandatory label
+
+mandatory_label = ttk.Label(root, text='*All fields are mandatory', foreground='Red', font=('Ariel', 8))
+mandatory_label.place(x=18, y=705)
+
 
 # submit button
 
