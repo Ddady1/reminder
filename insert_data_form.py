@@ -6,7 +6,10 @@ from ctypes import windll
 import os
 import json
 import subprocess
-#import calendar_picker
+import mysql.connector
+from mysql.connector import connect, Error
+
+
 
 def get_start(e):
     start_date_entry.delete(0, 'end')
@@ -35,10 +38,33 @@ def clear_btn(entries):
 
 
 def submit_btn(enteries):
+    print(enteries)
     for entry in enteries:
         print(entry.get())
+        print(entry._name)
+        if entry._name == '!entry5':
+            print('DONE!!')
     clear_btn(enteries)
 
+
+def connect_sql(enteries):
+
+    with open('assets/secret.json') as f:
+        config = json.load(f)
+
+    connection = None
+    try:
+        connection = mysql.connector.Connect(
+            host=config.get('sql_address'),
+            user=config.get('db_username'),
+            password=config.get('db_pass'),
+            database=config.get('db_dbName')
+        )
+
+    except Error as e:
+        showinfo(title='Connection error.', message='Could not connect with MySQL. Please check connection details and try again.')
+
+    return connection
 
 
 
@@ -94,7 +120,6 @@ product_entry.focus()
 
 manufacture_label = ttk.Label(root, text='Manufacturer Name:', foreground=text_color, font=('Ariel', 10))
 manufacture_label.place(x=20, y=100)
-
 manufacture_entry = ttk.Entry(root, textvariable=manufacturer)
 manufacture_entry.place(x=20, y=120, width=300)
 
