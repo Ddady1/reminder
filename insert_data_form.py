@@ -43,15 +43,20 @@ def submit_btn(entries):
     for entry in entries:
         entries_vals.append(entry.get())
     con = connect_sql()
-    insert_data(con, entries_vals, tabel_vars)
+    insert_data(con, entries_vals, table_vars)
     clear_btn(entries)
 
 
-def insert_data(con, entries_vals, tabel_vars):
+def insert_data(con, entries_vals, table_vars):
 
     cursor = con.cursor()
+    sql_vals = f'INSERT INTO lic {table_vars} VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+    print(sql_vals)
     print(entries_vals)
-    print(tabel_vars)
+    cursor.execute(sql_vals, entries_vals)
+    con.commit()
+    print(cursor.rowcount, 'record inserted')
+    #print(tabel_vars)
 
 def connect_sql():
 
@@ -73,7 +78,7 @@ def connect_sql():
     return connection
 
 
-tabel_vars = ('product_name', 'manufacturer', 'supplier', 'start_date', 'expiration_date', 'invoice_number', 'quantity',
+table_vars = ('product_name', 'manufacturer', 'supplier', 'start_date', 'expiration_date', 'invoice_number', 'quantity',
     'invoice_date', 'license_number', 'authorization_number', 'contact_f_name', 'contact_l_name', 'contact_email', 'contact_phone')
 
 windll.shcore.SetProcessDpiAwareness(1)
@@ -266,7 +271,7 @@ mandatory_label.place(x=18, y=705)
 
 # submit button
 
-entries_list = (product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
+entries_list = (product_entry, manufacture_entry, supplier_entry, start_date_entry, expired_date_entry,
                 inv_num_entry, qty_entry, inv_date_entry, lic_number_entry, auth_no_entry, first_name_entry,
                 last_name_entry, email_entry, mobile_entry)
 btn_submit = tk.Button(root, text='Submit\nDetails', foreground=text_color, font=('Ariel', 12, 'bold'), width=10, command=lambda: submit_btn(entries_list))
