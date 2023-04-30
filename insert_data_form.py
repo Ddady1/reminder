@@ -44,6 +44,7 @@ def submit_btn(enteries):
         print(entry._name)
         if entry._name == '!entry5':
             print('DONE!!')
+    con = connect_sql()
     clear_btn(enteries)
 
 
@@ -267,9 +268,9 @@ btn_submit.place(x=30, y=730)
 
 # clear button
 
-entries_list = [product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
+entries_list = (product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
                 inv_num_entry, qty_entry, inv_date_entry, lic_number_entry, auth_no_entry, first_name_entry,
-                last_name_entry, email_entry, mobile_entry]
+                last_name_entry, email_entry, mobile_entry)
 btn_clear = tk.Button(root, text='Clear\nForm', foreground=text_color, font=('Ariel', 12, 'bold'), width=10, command=lambda: clear_btn(entries_list))
 btn_clear.place(x=170, y=730)
 
