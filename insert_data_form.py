@@ -37,18 +37,23 @@ def clear_btn(entries):
         product_entry.focus()
 
 
-def submit_btn(enteries):
-    print(enteries)
-    for entry in enteries:
-        print(entry.get())
-        print(entry._name)
-        if entry._name == '!entry5':
-            print('DONE!!')
+def submit_btn(entries):
+    #print(entries)
+    entries_vals = []
+    for entry in entries:
+        entries_vals.append(entry.get())
     con = connect_sql()
-    clear_btn(enteries)
+    insert_data(con, entries_vals, tabel_vars)
+    clear_btn(entries)
 
 
-def connect_sql(enteries):
+def insert_data(con, entries_vals, tabel_vars):
+
+    cursor = con.cursor()
+    print(entries_vals)
+    print(tabel_vars)
+
+def connect_sql():
 
     with open('assets/secret.json') as f:
         config = json.load(f)
@@ -68,6 +73,8 @@ def connect_sql(enteries):
     return connection
 
 
+tabel_vars = ('product_name', 'manufacturer', 'supplier', 'start_date', 'expiration_date', 'invoice_number', 'quantity',
+    'invoice_date', 'license_number', 'authorization_number', 'contact_f_name', 'contact_l_name', 'contact_email', 'contact_phone')
 
 windll.shcore.SetProcessDpiAwareness(1)
 
@@ -259,18 +266,18 @@ mandatory_label.place(x=18, y=705)
 
 # submit button
 
-entries_list = [product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
+entries_list = (product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
                 inv_num_entry, qty_entry, inv_date_entry, lic_number_entry, auth_no_entry, first_name_entry,
-                last_name_entry, email_entry, mobile_entry]
+                last_name_entry, email_entry, mobile_entry)
 btn_submit = tk.Button(root, text='Submit\nDetails', foreground=text_color, font=('Ariel', 12, 'bold'), width=10, command=lambda: submit_btn(entries_list))
 btn_submit.place(x=30, y=730)
 
 
 # clear button
 
-entries_list = (product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
+'''entries_list = (product_entry, manufacture_entry, supplier_entry, supplier_entry, start_date_entry, expired_date_entry,
                 inv_num_entry, qty_entry, inv_date_entry, lic_number_entry, auth_no_entry, first_name_entry,
-                last_name_entry, email_entry, mobile_entry)
+                last_name_entry, email_entry, mobile_entry)'''
 btn_clear = tk.Button(root, text='Clear\nForm', foreground=text_color, font=('Ariel', 12, 'bold'), width=10, command=lambda: clear_btn(entries_list))
 btn_clear.place(x=170, y=730)
 
