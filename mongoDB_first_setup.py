@@ -163,7 +163,7 @@ db_freq_label = ttk.Label(lf, text='DB existence checking frequency: (Default: a
 db_freq_label.pack(fill='x', expand=True)
 db_freq_exa = ttk.Label(image=exclamation_image_lab)
 db_freq_exa.place(x=335, y=324)
-ToolTip(db_freq_exa, msg='How frequantly do you want the program to check the existence of the DB and tables.\n'
+ToolTip(db_freq_exa, msg='How frequently do you want the program to check the existence of the DB and tables.\n'
                          'The default is 0=Always, which means everytime you run the program.\n'
                          '1 is once a day. 2 is every 2 days since first run and etc.')
 
@@ -181,7 +181,7 @@ save_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 
 # Clear button
 
-entries_list = [mongoDB_address_entry, db_username_entry, db_pass_entry, db_port_entry, db_dbName_entry, db_freq_entry]
+entries_list = [mongoDB_address_entry, db_username_entry, db_pass_entry, db_dbName_entry, db_freq_entry]
 clear_button = ttk.Button(lf, text='Clear all', command=lambda: clear_bt(entries_list))
 clear_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 

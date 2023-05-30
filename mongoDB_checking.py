@@ -9,7 +9,7 @@ from ctypes import windll
 import subprocess
 ###from mysql.connector import connect, Error
 import json
-from connect_mogoDB import client
+from mogoDB_connect import client
 
 
 windll.shcore.SetProcessDpiAwareness(1)
