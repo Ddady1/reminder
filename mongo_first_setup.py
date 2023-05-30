@@ -78,15 +78,15 @@ exclamation_image_lab = ImageTk.PhotoImage(exclamation_image)
 
 # Create variables
 
-sql_address = tk.StringVar()
+mongoDB_address = tk.StringVar()
 db_username = tk.StringVar()
 db_pass = tk.StringVar()
 db_port = tk.StringVar()
 db_dbName = tk.StringVar()
 db_freq = tk.StringVar()
 
-var_list = [sql_address, db_username, db_pass, db_port, db_dbName, db_freq]
-var_list_string = ['sql_address', 'db_username', 'db_pass', 'db_port', 'db_dbName', 'db_check_freq']
+var_list = [mongoDB_address, db_username, db_pass, db_port, db_dbName, db_freq]
+var_list_string = ['mongoDB_address', 'db_username', 'db_pass', 'db_port', 'db_dbName', 'db_check_freq']
 
 # Setup grid
 
@@ -99,17 +99,17 @@ lf = ttk.Labelframe(root, text='SQL Connection details:')
 lf.pack(fill='both', ipadx=10, ipady=50, padx=50, pady=20, anchor=tk.NW)
 
 
-# SQL address
+# MongoDB address
 
-sql_address_label = ttk.Label(lf, text='MongoDB address:')
-sql_address_label.pack(fill='x', expand=True)
-sql_address_exa = ttk.Label(image=exclamation_image_lab)
-sql_address_exa.place(x=155, y=42)
-ToolTip(sql_address_exa, msg='The address of the MongoDB')
+mongoDB_address_label = ttk.Label(lf, text='MongoDB address:')
+mongoDB_address_label.pack(fill='x', expand=True)
+mongoDB_address_exa = ttk.Label(image=exclamation_image_lab)
+mongoDB_address_exa.place(x=155, y=42)
+ToolTip(mongoDB_address_exa, msg='The address of the MongoDB')
 
-sql_address_entry = ttk.Entry(lf, textvariable=sql_address)
-sql_address_entry.pack(fill='x', expand=True)
-sql_address_entry.focus()
+mongoDB_address_entry = ttk.Entry(lf, textvariable=mongoDB_address)
+mongoDB_address_entry.pack(fill='x', expand=True)
+mongoDB_address_entry.focus()
 
 # DB username
 
@@ -133,7 +133,7 @@ ToolTip(db_pass_exa, msg='The related username password')
 db_pass_entry = ttk.Entry(lf, textvariable=db_pass, show='*')
 db_pass_entry.pack(fill='x', expand=True)
 
-# DB port
+'''# DB port
 
 db_port_label = ttk.Label(lf, text='DB port: (Default: 3306)')
 db_port_label.pack(fill='x', expand=True)
@@ -143,7 +143,7 @@ ToolTip(db_port_exa, msg='The default port is 3306.\nYou can change it according
 
 db_port_entry = ttk.Entry(lf, textvariable=db_port)
 db_port_entry.insert(0, '3306')
-db_port_entry.pack(fill='x', expand=True)
+db_port_entry.pack(fill='x', expand=True)'''
 
 # DB dbName
 
@@ -181,7 +181,7 @@ save_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 
 # Clear button
 
-entries_list = [sql_address_entry, db_username_entry, db_pass_entry, db_port_entry, db_dbName_entry, db_freq_entry]
+entries_list = [mongoDB_address_entry, db_username_entry, db_pass_entry, db_port_entry, db_dbName_entry, db_freq_entry]
 clear_button = ttk.Button(lf, text='Clear all', command=lambda: clear_bt(entries_list))
 clear_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 

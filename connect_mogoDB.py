@@ -1,6 +1,14 @@
 from pymongo import MongoClient
+import json
 
-con_string = 'mongodb+srv://myAtlasDBUser:myatlas-001@myatlasclusteredu.vaenw0e.mongodb.net/?retryWrites=true&w=majority' #Replace password in string
+with open('assets/secret.json') as f:
+    config = json.load(f)
+
+db_address = config.get('mongoDB_address')
+db_user = config.get('mongoDB_user')
+password = config.get('mongoDB_pass')
+
+con_string = f'mongodb+srv://{db_user}:{password}@{db_address}' #Replace password in string
 client = MongoClient(con_string)
 
 '''for db_name in client.list_database_names():
