@@ -9,7 +9,7 @@ from ctypes import windll
 import subprocess
 ###from mysql.connector import connect, Error
 import json
-from mogoDB_connect import client
+#from mogoDB_connect import client
 
 
 windll.shcore.SetProcessDpiAwareness(1)
@@ -57,7 +57,13 @@ root.geometry('600x400+250+250')
 root.iconbitmap('assets/reminder.ico')
 
 
-# PB sql connection label
+# TextBox
+
+text_box = tk.Text(root, height=20, width=69)
+text_box.place(x=20, y=50)
+
+text_box.insert('end', messages(9))
+'''# PB sql connection label
 
 sql_connection_label = ttk.Label(root, text=messages(4))
 sql_connection_label.place(x=10, y=30)
@@ -75,7 +81,7 @@ db_create_label.place(x=10, y=180)
 # PB creating Tables
 
 table_creat_label = ttk.Label(root, text=messages(11))
-table_creat_label.place(x=10, y=240)
+table_creat_label.place(x=10, y=240)'''
 
 
 # cancel button
