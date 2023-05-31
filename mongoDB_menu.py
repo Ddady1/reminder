@@ -38,10 +38,10 @@ class App(tk.Tk):
     def yesno_popup(self):
         answer = askyesno(title='First Setup', message='In order to connect to the database, some details are needed.\nWould you like to setup the connection now?\nYou can do it later from the Edit->Settings menu.')
         if answer:
-            subprocess.call('first_setup.py', shell=True)
+            subprocess.call('mongoDB_first_setup.py', shell=True)
 
     def menu_about(self):
-        showinfo(title='About', message='Reminder ver. 1.0.0\nBy David Hay Racha')
+        showinfo(title='About', message='Reminder ver. 2.0.0\nBy David Hay Racha')
 
 
     def create_menu(self):
@@ -66,7 +66,7 @@ class App(tk.Tk):
         edit_menu.add_command(label='Edit License...')
         edit_menu.add_command(label='Delete license')
         edit_menu.add_separator()
-        edit_menu.add_command(label='Settings', command=lambda: subprocess.call('first_setup.py', shell=True))
+        edit_menu.add_command(label='Settings', command=lambda: subprocess.call('mongoDB_first_setup.py', shell=True))
 
         # Create the view menu
 
