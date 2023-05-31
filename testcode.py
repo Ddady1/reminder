@@ -10,9 +10,9 @@
                 #database=config.get('db_name')
             ) as connection:
                 #print('Connection with database was established')
-                print(connection)'''
+                print(connection)
 
-                '''# Create DB
+                # Create DB
 
                 db = connection.cursor()
                 db.execute('show databases')
@@ -28,7 +28,7 @@
                         print('Database was created')
 
                 # Create Licenses Table
-                create_licenses_table = ''''''
+                create_licenses_table =
                             CREATE TABLE IF NOT EXISTS licenses(
                             id INT AUTO_INCREMENT PRIMARY KEY,
                             product_name VARCHAR(100),
@@ -42,20 +42,39 @@
                             authorization_id VARCHAR(100),
                             agreement_id VARCHAR(100)
                             )
-                            '''
-                '''with connection.cursor() as cursor:
+
+                with connection.cursor() as cursor:
                     cursor.execute(create_licenses_table)
                     connection.commit()
-                    print('Table was created')'''
+                    print('Table was created')
 
 ____________________________________
 Another way to connect with pymysql:
 ------------------------------------
 
-        '''db = pymysql.connect(
+        db = pymysql.connect(
                 host=config.get('aws_sql_address'),
                 user=config.get('db_username'),
                 password=config.get('db_pass')
             )
             cursor = db.cursor()
             print(cursor)'''
+
+
+
+import json
+
+# Data to be written
+dictionary = {
+    "name": "sathiyajith",
+    "rollno": 56,
+    "cgpa": 8.6,
+    "phonenumber": "9976770500"
+}
+
+# Serializing json
+json_object = json.dumps(dictionary, indent=4)
+
+# Writing to sample.json
+with open("assets/test.json", "w") as outfile:
+    outfile.write(json_object)

@@ -20,9 +20,9 @@ def check_json():
 
 
 def write_json(var_list, string_list):
-    first_run_time = time.time()
+    '''first_run_time = time.time()
     string_list.append('first_run_time')
-    var_list.append(first_run_time)
+    var_list.append(first_run_time)'''
     dict = {}
     i = 0
     for var in var_list:
@@ -66,7 +66,7 @@ def check_fields():
 
 root = tk.Tk()
 root.title('Reminder-Initial setup')
-root.geometry('600x400+250+250')
+root.geometry('500x300+250+250')
 root.resizable(False, False)
 root.iconbitmap('assets/reminder.ico')
 
@@ -85,8 +85,8 @@ db_port = tk.StringVar()
 db_dbName = tk.StringVar()
 db_freq = tk.StringVar()
 
-var_list = [mongoDB_address, db_username, db_pass, db_freq]
-var_list_string = ['mongoDB_address', 'db_username', 'db_pass', 'db_check_freq']
+var_list = [mongoDB_address, db_pass]
+var_list_string = ['mongoDB_address', 'mongoDB_pass']
 
 # Setup grid
 
@@ -101,34 +101,34 @@ lf.pack(fill='both', ipadx=10, ipady=50, padx=50, pady=40, anchor=tk.NW)
 
 # MongoDB address
 
-mongoDB_address_label = ttk.Label(lf, text='MongoDB address:')
+mongoDB_address_label = ttk.Label(lf, text='MongoDB connection string:')
 mongoDB_address_label.pack(fill='x', expand=True)
 mongoDB_address_exa = ttk.Label(image=exclamation_image_lab)
-mongoDB_address_exa.place(x=155, y=43)
-ToolTip(mongoDB_address_exa, msg='The address of the MongoDB')
+mongoDB_address_exa.place(x=206, y=68)
+ToolTip(mongoDB_address_exa, msg='The connection string of MongoDB provided from site')
 
 mongoDB_address_entry = ttk.Entry(lf, textvariable=mongoDB_address)
 mongoDB_address_entry.pack(fill='x', expand=True)
 mongoDB_address_entry.focus()
 
-# DB username
+'''# DB username
 
 db_username_label = ttk.Label(lf, text='DB Username:')
 db_username_label.pack(fill='x', expand=True)
 db_username_exa = ttk.Label(image=exclamation_image_lab)
-db_username_exa.place(x=130, y=103)
+db_username_exa.place(x=130, y=138)
 ToolTip(db_username_exa, msg='The username that was created with the DB')
 
 db_username_entry = ttk.Entry(lf, textvariable=db_username)
-db_username_entry.pack(fill='x', expand=True)
+db_username_entry.pack(fill='x', expand=True)'''
 
 # DB password
 
 db_pass_label = ttk.Label(lf, text='DB password:')
 db_pass_label.pack(fill='x', expand=True)
 db_pass_exa = ttk.Label(image=exclamation_image_lab)
-db_pass_exa.place(x=125, y=162)
-ToolTip(db_pass_exa, msg='The related username password')
+db_pass_exa.place(x=125, y=152)
+ToolTip(db_pass_exa, msg='The password that was created with the DB')
 
 db_pass_entry = ttk.Entry(lf, textvariable=db_pass, show='*')
 db_pass_entry.pack(fill='x', expand=True)
@@ -157,7 +157,7 @@ db_dbName_entry = ttk.Entry(lf, textvariable=db_dbName)
 db_dbName_entry.insert(0, 'licenses')
 db_dbName_entry.pack(fill='x', expand=True)'''
 
-#  DB checking frequency
+'''#  DB checking frequency
 
 db_freq_label = ttk.Label(lf, text='DB existence checking frequency: (Default: always=0)')
 db_freq_label.pack(fill='x', expand=True)
@@ -169,7 +169,7 @@ ToolTip(db_freq_exa, msg='How frequently do you want the program to check the ex
 
 db_freq_entry = ttk.Entry(lf, textvariable=db_freq)
 db_freq_entry.insert(0, 0)
-db_freq_entry.pack(fill='x', expand=True)
+db_freq_entry.pack(fill='x', expand=True)'''
 
 # Save button (need to be correct)
 #https://www.pythontutorial.net/tkinter/tkinter-validation/
@@ -181,7 +181,7 @@ save_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 
 # Clear button
 
-entries_list = [mongoDB_address_entry, db_username_entry, db_pass_entry, db_freq_entry]
+entries_list = [mongoDB_address_entry, db_pass_entry]
 clear_button = ttk.Button(lf, text='Clear all', command=lambda: clear_bt(entries_list))
 clear_button.pack(side='left', ipadx=5, ipady=5, expand=True)
 

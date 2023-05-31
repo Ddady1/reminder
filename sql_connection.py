@@ -19,7 +19,7 @@ def connect_sql(flag):
     #global con
     global config
 
-    with open('assets/secret.json') as f:
+    with open('assets/secret.json.old') as f:
         config = json.load(f)
 
     '''try:

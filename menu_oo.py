@@ -23,7 +23,7 @@ class App(tk.Tk):
     windll.shcore.SetProcessDpiAwareness(1)
 
     def check_json(self):
-        path = 'assets/secret.json'
+        path = 'assets/secret.json.old'
         if not os.path.isfile(path):
             self.yesno_popup()
         else:
