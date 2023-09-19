@@ -9,6 +9,7 @@ def arithmetic_arranger(problems):
 			print('Error: Numbers must only contain digits.')
 		elif len(x[0]) > 4 or len(x[2]) > 4:
 			print('Error: Numbers cannot be more than four digits.')
+		print(f"{x[0] : >10}\n{x[1] : >5}{x[2]: >5}")
 	#return arranged_problems
 
 arithmetic_arranger(["32 + 698", "3801 - 25", "45 + 43", "123 + 49"])
