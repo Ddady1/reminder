@@ -60,7 +60,7 @@ def insert_data(con, entries_vals, table_vars):
 
 def connect_sql():
 
-    with open('assets/secret.json') as f:
+    with open('assets/secret.json.old') as f:
         config = json.load(f)
 
     connection = None

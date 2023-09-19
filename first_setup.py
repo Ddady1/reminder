@@ -13,7 +13,7 @@ windll.shcore.SetProcessDpiAwareness(1)
 
 
 def check_json():
-    path = 'assets/secret.json'
+    path = 'assets/secret.json.old'
     if os.path.isfile(path):
         confirm()
     write_json(var_list, var_list_string)
@@ -31,7 +31,7 @@ def write_json(var_list, string_list):
         i += 1
 
     js_object = json.dumps(dict, indent=4)
-    with open('assets/secret.json', 'w') as f:
+    with open('assets/secret.json.old', 'w') as f:
         f.write(js_object)
     #from sql_connection import connect_sql
     #connect_sql()
